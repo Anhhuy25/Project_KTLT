@@ -1,0 +1,44 @@
+﻿@page
+@model QLCuaHang.Pages.MH_MatHangModel
+@using QLCuaHang.Entity
+@using QLCuaHang.Business
+@{
+}
+
+
+<h1>Mặt hàng</h1>
+<form method="post">
+    <label style="margin-right: 8px">Mã hàng</label>
+    <input type="text" name="maHang" value="@Model.MaHang" /><br />
+    <button style="margin-top:8px" type="submit">Tìm kiếm</button>
+</form>
+
+<a href="./MatHang/MH_ThemSanPham">Thêm sản phẩm</a>
+
+<table>
+    <tr>
+        <td>Mã hàng</td>
+        <td>Tên hàng</td>
+        <td>Loại hàng</td>
+        <td>Công ty SX</td>
+        <td>Ngày SX</td>
+        <td>Hạn SD</td>
+        <td></td>
+    </tr>
+    @foreach (SanPham sp in Model.dsSanPham)
+    {
+        <tr>
+            <td>@sp.maMH</td>
+            <td>@sp.tenMH</td>
+            <td>@sp.loaiMH</td>
+            <td>@sp.congtySX</td>
+            <td>@sp.ngaySX.Month/@sp.ngaySX.Day/@sp.ngaySX.Year</td>
+            <td>@sp.hanSD.Month/@sp.hanSD.Day/@sp.hanSD.Year</td>
+            <td>
+                <a style="border: 1px solid black; padding: 4px 12px; border-radius: 8px; margin-right: 4px; text-decoration:none;" href="./MatHang/MH_SuaSanPham?pid=@sp.maMH">Sửa</a>
+                <a id="deleteBtn" style="border: 1px solid black; padding: 4px 12px; border-radius: 8px; margin-left: 4px; color: red" href="./MatHang/MH_XoaSanPham?pid=@sp.maMH">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>
+

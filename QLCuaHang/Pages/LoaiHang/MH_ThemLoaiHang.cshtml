@@ -1,0 +1,13 @@
+﻿@page
+@model QLCuaHang.Pages.MH_ThemLoaiHangModel
+@{
+}
+
+<form method="post">
+    <label for="mhh">Nhập mã loại hàng:</label><br>
+    <input type="text" id="mhh" name="maloaihang" value="@Model.MaLoaiHang"><br />
+    <label for="thh">Nhập tên loại hàng:</label><br>
+    <input type="text" id="thh" name="tenloaihang" value="@Model.TenLoaiHang"><br />
+
+    <button type="submit" id="btn">Thêm</button>
+</form>

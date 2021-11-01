@@ -1,0 +1,28 @@
+﻿@page
+@model QLCuaHang.Pages.ThongKe.MH_TKHangHetHanModel
+@using QLCuaHang.Entity;
+@{
+}
+
+<h1>Mặt hàng hết hạn</h1>
+<table>
+    <tr>
+        <td>Mã hàng</td>
+        <td>Tên hàng</td>
+        <td>Loại hàng</td>
+        <td>Công ty SX</td>
+        <td>Ngày SX</td>
+        <td>Hạn SD</td>
+    </tr>
+    @foreach (SanPham sp in Model.ds)
+    {
+        <tr>
+            <td>@sp.maMH</td>
+            <td>@sp.tenMH</td>
+            <td>@sp.loaiMH</td>
+            <td>@sp.congtySX</td>
+            <td>@sp.ngaySX.Date</td>
+            <td>@sp.hanSD.Date</td>
+        </tr>
+    }
+</table>

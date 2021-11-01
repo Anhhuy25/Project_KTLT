@@ -1,0 +1,33 @@
+﻿@page
+@model MH_ThemSanPhamModel
+@using QLCuaHang.Entity
+@{
+}
+
+<h1>Thêm hàng hóa</h1>
+<form method="post">
+    <label for="mhh">Nhập mã hàng hóa:</label><br>
+    <input type="text" id="mhh" name="mahang" value="@Model.MaHang"><br />
+    <label for="thh">Nhập tên hàng hóa:</label><br>
+    <input type="text" id="thh" name="tenhang" value="@Model.TenHang"><br />
+    <label for="lhh">Nhập loại hàng hóa:</label><br>
+    <select name="loaihang" id="lhh">
+        <option value="">--- Chọn loại hàng ---</option>
+        @foreach (LoaiHangSP lh in Model.dsLH)
+        {
+            <option value="@lh.tenLH">@lh.tenLH</option>
+        }
+    </select><br />
+    <label for="ct">Nhập công ty sản xuất:</label><br>
+    <input type="text" id="ct" name="congty" value="@Model.CongTy"><br />
+    <label for="nsx">Nhập ngày sản xuất:</label><br>
+    <input type="text" id="nsx" name="ngaySanxuat" value="@Model.NgaySanXuat.Month/@Model.NgaySanXuat.Day/@Model.NgaySanXuat.Year"><br />
+    <label for="hsd">Nhập hạn sử dụng:</label><br>
+    <input type="text" id="hsd" name="hanSudung" value="@Model.HanSuDung.Month/@Model.HanSuDung.Day/@Model.HanSuDung.Year"><br />
+
+    <button type="submit" id="btn">Thêm</button>
+</form>
+
+
+
+

@@ -1,0 +1,34 @@
+﻿@page
+@model QLCuaHang.Pages.MH_LoaiHangModel
+@using QLCuaHang.Entity
+@{
+}
+
+
+<h1>Loại hàng</h1>
+<form method="post">
+    <label style="margin-right: 8px">Mã loại hàng</label>
+    <input type="text" name="maLoaiHang" value="@Model.MaLoaiHang" /><br />
+    <button style="margin-top:8px" type="submit">Tìm kiếm</button>
+</form>
+
+<a href="./LoaiHang/MH_ThemLoaiHang">Thêm loại hàng</a>
+
+<table>
+    <tr>
+        <td>Mã loại hàng</td>
+        <td>Tên loại hàng</td>
+        <td></td>
+    </tr>
+    @foreach (LoaiHangSP lh in Model.dsLoaiHang)
+    {
+        <tr>
+            <td>@lh.maLH</td>
+            <td>@lh.tenLH</td>
+            <td>
+                <a style="border: 1px solid black; padding: 4px 12px; border-radius: 8px; margin-right: 4px; text-decoration:none;" href="./LoaiHang/MH_SuaLoaiHang?pid=@lh.maLH">Sửa</a>
+                <a id="deleteBtn" style="border: 1px solid black; padding: 4px 12px; border-radius: 8px; margin-left: 4px; color: red" href="./LoaiHang/MH_XoaLoaiHang?pid=@lh.maLH">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>
