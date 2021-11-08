@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using QLCuaHang.Entity;
 using QLCuaHang.Business;
+using QLCuaHang.Entity;
 
-namespace QLCuaHang.Pages.HoaDon
+namespace QLCuaHang.Pages.HoaDon.Nhap
 {
-    public class MH_SuaHoaDonModel : PageModel
+    public class MH_SuaHoaDonNhapModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
         public string PiD { get; set; }
@@ -18,8 +18,8 @@ namespace QLCuaHang.Pages.HoaDon
         public string error { get; set; }
         public void OnGet()
         {
-            HoaDonMH hd = XL_HoaDon.docHoaDon(PiD);
-            if(hd.maHD != "")
+            HoaDonMH hd = XL_HoaDonNhap.docHoaDonNhap(PiD);
+            if (hd.maHD != "")
             {
                 ngayTaoHD = hd.ngayTaoHD;
             }
@@ -32,10 +32,10 @@ namespace QLCuaHang.Pages.HoaDon
 
         public void OnPost()
         {
-            HoaDonMH hd = XL_HoaDon.docHoaDon(PiD);
+            HoaDonMH hd = XL_HoaDonNhap.docHoaDonNhap(PiD);
             hd.ngayTaoHD = ngayTaoHD;
-            XL_HoaDon.suaHoaDon(hd);
-            Response.Redirect("/MH_HoaDon");
+            XL_HoaDonNhap.suaHoaDonNhap(hd);
+            Response.Redirect("./MH_HoaDonNhap");
         }
     }
 }

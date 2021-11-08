@@ -7,28 +7,26 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using QLCuaHang.Entity;
 using QLCuaHang.Business;
 
-namespace QLCuaHang.Pages
+namespace QLCuaHang.Pages.HoaDon
 {
-    public class MH_MatHangModel : PageModel
+    public class MH_ThemHoaDonBanModel : PageModel
     {
-        public SanPham[] dsSanPham;
         [BindProperty]
-        public string MaHang { get; set; }
+        public string MaHD { get; set; }
         [BindProperty]
-        public string TenHang { get; set; }
-
-
-
+        public DateTime NgayTaoHD { get; set; }
         public void OnGet()
         {
-            dsSanPham = XL_SanPham.timSanPham();
         }
 
         public void OnPost()
         {
-            dsSanPham = XL_SanPham.timSanPham(MaHang, TenHang);
+            HoaDonMH hd = new HoaDonMH();
+            hd.maHD = MaHD;
+            hd.ngayTaoHD = NgayTaoHD;
+            XL_HoaDonBan.luuHoaDonBan(hd);
+            Response.Redirect("./MH_HoaDonBan");
         }
-
-        
     }
+
 }

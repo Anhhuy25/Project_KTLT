@@ -9,21 +9,21 @@ using QLCuaHang.Business;
 
 namespace QLCuaHang.Pages.HoaDon
 {
-    public class MH_XoaHoaDonModel : PageModel
+    public class MH_XoaHoaDonBanModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
         public string PiD { get; set; }
         public HoaDonMH h;
         public void OnGet()
         {
-            h = XL_HoaDon.docHoaDon(PiD);
+            h = XL_HoaDonBan.docHoaDonBan(PiD);
         }
 
         public void OnPost()
         {
-            h = XL_HoaDon.docHoaDon(PiD);
-            XL_HoaDon.xoaHoaDon(h);
-            Response.Redirect("/MH_HoaDon");
+            h = XL_HoaDonBan.docHoaDonBan(PiD);
+            XL_HoaDonBan.xoaHoaDonBan(h);
+            Response.Redirect("./MH_HoaDonBan");
         }
     }
 }

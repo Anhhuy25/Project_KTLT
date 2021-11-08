@@ -1,7 +1,6 @@
 ﻿@page
 @model QLCuaHang.Pages.MH_MatHangModel
 @using QLCuaHang.Entity
-@using QLCuaHang.Business
 @{
 }
 
@@ -10,6 +9,8 @@
 <form method="post">
     <label style="margin-right: 8px">Mã hàng</label>
     <input type="text" name="maHang" value="@Model.MaHang" /><br />
+    <label style="margin-right: 8px">Tên hàng</label>
+    <input type="text" name="tenHang" value="@Model.TenHang" /><br />
     <button style="margin-top:8px" type="submit">Tìm kiếm</button>
 </form>
 

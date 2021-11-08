@@ -1,0 +1,43 @@
+﻿@page
+@model QLCuaHang.Pages.ThongKe.MH_TKHangConLaiModel
+@using QLCuaHang.Entity
+@{
+}
+
+<h1>Mặt hàng còn lại</h1>
+<form method="post">
+    <label for="lhh">Loại hàng hóa:</label><br>
+    <select name="loaihang" id="loaihang">
+        <option value="">--- Chọn ---</option>
+        @foreach (LoaiHangSP lh in Model.dsLH)
+        {
+            <option value="@lh.tenLH">@lh.tenLH</option>
+        }
+    </select><br />
+    <button type="submit">Thống kê</button>
+</form>
+
+<p>Số lượng: <b>@Model.soLuong</b></p>
+<p>Danh sách</p>
+<table>
+    <tr>
+        <td>Mã hàng</td>
+        <td>Tên hàng</td>
+        <td>Loại hàng</td>
+        <td>Công ty SX</td>
+        <td>Ngày SX</td>
+        <td>Hạn SD</td>
+    </tr>
+    @foreach (SanPham sp in Model.dsSPConLai)
+    {
+        <tr>
+            <td>@sp.maMH</td>
+            <td>@sp.tenMH</td>
+            <td>@sp.loaiMH</td>
+            <td>@sp.congtySX</td>
+            <td>@sp.ngaySX.Month/@sp.ngaySX.Day/@sp.ngaySX.Year</td>
+            <td>@sp.hanSD.Month/@sp.hanSD.Day/@sp.hanSD.Year</td>
+        </tr>
+    }
+</table>
+

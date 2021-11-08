@@ -1,0 +1,13 @@
+﻿@page
+@model QLCuaHang.Pages.HoaDon.MH_SuaHoaDonBanModel
+@{
+}
+
+<h1>Cập nhật hóa đơn bán</h1>
+<form method="post">
+    <label>Ngày tạo hóa đơn:</label><br>
+    <input type="text" name="ngayTaoHD" value="@Model.ngayTaoHD.Month/@Model.ngayTaoHD.Day/@Model.ngayTaoHD.Year"><br />
+
+    <input type="submit" value="Cập nhật" />
+</form>
+<h3 style="color:red">@Model.error</h3>

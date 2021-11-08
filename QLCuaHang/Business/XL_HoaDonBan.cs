@@ -7,16 +7,16 @@ using QLCuaHang.DAL;
 
 namespace QLCuaHang.Business
 {
-    public class XL_HoaDon
+    public class XL_HoaDonBan
     {
-        public static HoaDonMH[] timHoaDon(string id = "")
+        public static HoaDonMH[] timHoaDonBan(string id = "", DateTime day = new DateTime())
         {
-            HoaDonMH[] ds = LT_HoaDon.docDSHoaDon();
+            HoaDonMH[] ds = LT_HoaDonBan.docDSHoaDonBan();
             HoaDonMH[] kq;
             int n = 0;
             for (int i = 0; i < ds.Length; i++)
             {
-                if (ds[i].maHD.Contains(id))
+                if (ds[i].maHD.Contains(id) || ds[i].ngayTaoHD == day)
                 {
                     n++;
                 }
@@ -25,7 +25,7 @@ namespace QLCuaHang.Business
             int j = 0;
             for (int i = 0; i < ds.Length; i++)
             {
-                if (ds[i].maHD.Contains(id))
+                if (ds[i].maHD.Contains(id) || ds[i].ngayTaoHD == day)
                 {
                     kq[j] = ds[i];
                     j++;
@@ -35,25 +35,25 @@ namespace QLCuaHang.Business
             return kq;
         }
 
-        public static void luuHoaDon(HoaDonMH hd)
+        public static void luuHoaDonBan(HoaDonMH hd)
         {
-            LT_HoaDon.themHoaDon(hd);
+            LT_HoaDonBan.themHoaDonBan(hd);
         }
 
-        public static HoaDonMH docHoaDon(string id)
+        public static HoaDonMH docHoaDonBan(string id)
         {
-            HoaDonMH hd = LT_HoaDon.docHoaDon(id);
+            HoaDonMH hd = LT_HoaDonBan.docHoaDonBan(id);
             return hd;
         }
 
-        public static void suaHoaDon(HoaDonMH hd)
+        public static void suaHoaDonBan(HoaDonMH hd)
         {
-            LT_HoaDon.suaHoaDon(hd);
+            LT_HoaDonBan.suaHoaDonBan(hd);
         }
 
-        public static void xoaHoaDon(HoaDonMH hd)
+        public static void xoaHoaDonBan(HoaDonMH hd)
         {
-            LT_HoaDon.xoaHoaDon(hd);
+            LT_HoaDonBan.xoaHoaDonBan(hd);
         }
     }
 }

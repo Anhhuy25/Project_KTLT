@@ -1,0 +1,14 @@
+﻿@page
+@model QLCuaHang.Pages.HoaDon.Nhap.MH_ThemHoaDonNhapModel
+@{
+}
+
+<h1>Thêm hóa đơn nhập</h1>
+<form method="post">
+    <label>Nhập mã hóa đơn:</label><br>
+    <input type="text" name="mahd" value="@Model.MaHD"><br />
+    <label>Nhập ngày tạo hóa đơn:</label><br>
+    <input type="text" name="ngaytaohd" value="@Model.NgayTaoHD.Month/@Model.NgayTaoHD.Day/@Model.NgayTaoHD.Year"><br />
+
+    <input type="submit" value="Thêm" />
+</form>   

@@ -8,11 +8,11 @@ using QLCuaHang.Entity;
 
 namespace QLCuaHang.DAL
 {
-    public class LT_HoaDon
+    public class LT_HoaDonBan
     {
-        public static HoaDonMH[] docDSHoaDon()
+        public static HoaDonMH[] docDSHoaDonBan()
         {
-            StreamReader file = new StreamReader(@"C:\Users\Admin\Desktop\VB2\HK1 2021-2022\Kĩ thuật lập trình\20880241\hoadon.json");
+            StreamReader file = new StreamReader(@"C:\Users\Admin\Desktop\VB2\HK1 2021-2022\Kĩ thuật lập trình\20880241\hoadonban.json");
             string json = file.ReadToEnd();
             HoaDonMH[] kq = JsonConvert.DeserializeObject<HoaDonMH[]>(json);
 
@@ -20,17 +20,17 @@ namespace QLCuaHang.DAL
             return kq;
         }
 
-        public static void luuDSHoaDon(HoaDonMH[] hd)
+        public static void luuDSHoaDonBan(HoaDonMH[] hd)
         {
-            StreamWriter file = new StreamWriter(@"C:\Users\Admin\Desktop\VB2\HK1 2021-2022\Kĩ thuật lập trình\20880241\hoadon.json");
+            StreamWriter file = new StreamWriter(@"C:\Users\Admin\Desktop\VB2\HK1 2021-2022\Kĩ thuật lập trình\20880241\hoadonban.json");
             string json = JsonConvert.SerializeObject(hd);
             file.Write(json);
             file.Close();
         }
 
-        public static void themHoaDon(HoaDonMH hd)
+        public static void themHoaDonBan(HoaDonMH hd)
         {
-            HoaDonMH[] dsHD = docDSHoaDon();
+            HoaDonMH[] dsHD = docDSHoaDonBan();
 
             HoaDonMH[] dsHDMoi = new HoaDonMH[dsHD.Length + 1];
             for (int i = 0; i < dsHD.Length; i++)
@@ -39,12 +39,12 @@ namespace QLCuaHang.DAL
             }
             dsHDMoi[dsHDMoi.Length - 1] = hd;
 
-            luuDSHoaDon(dsHDMoi);
+            luuDSHoaDonBan(dsHDMoi);
         }
 
-        public static HoaDonMH docHoaDon(string id)
+        public static HoaDonMH docHoaDonBan(string id)
         {
-            HoaDonMH[] ds = docDSHoaDon();
+            HoaDonMH[] ds = docDSHoaDonBan();
             for (int i = 0; i < ds.Length; i++)
             {
                 if (ds[i].maHD == id)
@@ -55,9 +55,9 @@ namespace QLCuaHang.DAL
             return new HoaDonMH();
         }
 
-        public static void suaHoaDon(HoaDonMH hd)
+        public static void suaHoaDonBan(HoaDonMH hd)
         {
-            HoaDonMH[] ds = docDSHoaDon();
+            HoaDonMH[] ds = docDSHoaDonBan();
             for (int i = 0; i < ds.Length; i++)
             {
                 if (ds[i].maHD == hd.maHD)
@@ -65,12 +65,12 @@ namespace QLCuaHang.DAL
                     ds[i] = hd;
                 }
             }
-            luuDSHoaDon(ds);
+            luuDSHoaDonBan(ds);
         }
 
-        public static void xoaHoaDon(HoaDonMH hd)
+        public static void xoaHoaDonBan(HoaDonMH hd)
         {
-            HoaDonMH[] ds = docDSHoaDon();
+            HoaDonMH[] ds = docDSHoaDonBan();
             HoaDonMH[] dsHDMoi = new HoaDonMH[ds.Length - 1];
             int j = 0;
             for (int i = 0; i < ds.Length; i++)
@@ -81,7 +81,7 @@ namespace QLCuaHang.DAL
                     j++;
                 }
             }
-            luuDSHoaDon(dsHDMoi);
+            luuDSHoaDonBan(dsHDMoi);
 
         }
     }

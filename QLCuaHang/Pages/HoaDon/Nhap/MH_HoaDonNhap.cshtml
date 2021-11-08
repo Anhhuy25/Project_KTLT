@@ -1,0 +1,38 @@
+﻿@page
+@model QLCuaHang.Pages.HoaDon.Nhap.MH_HoaDonNhapModel
+@using QLCuaHang.Entity
+@{
+}
+
+<h1>Hóa đơn nhập</h1>
+<form method="post">
+    <label>Mã hóa đơn</label>
+    <input type="text" name="maHD" value="@Model.MaHD" /><br />
+
+    <label>Ngày tạo hóa đơn</label>
+    <input type="date" name="ngayTaoHD" value="@Model.NgayTaoHD" /><br />
+
+    <button type="submit">Tìm kiếm</button>
+
+</form>
+
+<a href="./MH_ThemHoaDonNhap">Thêm hóa đơn nhập</a>
+
+<table>
+    <tr>
+        <td>Mã hóa đơn</td>
+        <td>Ngày tạo hóa đơn</td>
+        <td></td>
+    </tr>
+    @foreach (HoaDonMH hd in Model.dsHoaDon)
+    {
+        <tr>
+            <td>@hd.maHD</td>
+            <td>@hd.ngayTaoHD.Month/@hd.ngayTaoHD.Day/@hd.ngayTaoHD.Year</td>
+            <td>
+                <a style="border: 1px solid black; padding: 4px 12px; border-radius: 8px; margin-right: 4px;" href="./MH_SuaHoaDonNhap?pid=@hd.maHD">Sửa</a>
+                <a style="border: 1px solid black; padding: 4px 12px; border-radius: 8px; margin-left: 4px; color: red" href="./MH_XoaHoaDonNhap?pid=@hd.maHD">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>
