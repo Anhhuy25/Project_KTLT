@@ -16,6 +16,7 @@ namespace QLCuaHang.Pages
         public string MaLoaiHang { get; set; }
         [BindProperty]
         public string TenLoaiHang { get; set; }
+        public string err { get; set; }
         public void OnGet()
         {
         }
@@ -25,8 +26,14 @@ namespace QLCuaHang.Pages
             LoaiHangSP lh = new LoaiHangSP();
             lh.maLH = MaLoaiHang;
             lh.tenLH = TenLoaiHang;
-            XL_LoaiHang.luuLoaiHang(lh);
-            Response.Redirect("/MH_LoaiHang");
+            if(XL_LoaiHang.loiThemLH(lh) == "")
+            {
+                XL_LoaiHang.luuLoaiHang(lh);
+                Response.Redirect("/MH_LoaiHang");
+            } else
+            {
+                err = XL_LoaiHang.loiThemLH(lh);
+            }
         }
     }
 }

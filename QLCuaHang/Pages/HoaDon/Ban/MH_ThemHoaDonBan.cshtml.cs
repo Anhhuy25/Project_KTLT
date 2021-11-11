@@ -15,6 +15,7 @@ namespace QLCuaHang.Pages.HoaDon
         public string MaHD { get; set; }
         [BindProperty]
         public DateTime NgayTaoHD { get; set; }
+        public string err { get; set; }
         public void OnGet()
         {
         }
@@ -24,8 +25,15 @@ namespace QLCuaHang.Pages.HoaDon
             HoaDonMH hd = new HoaDonMH();
             hd.maHD = MaHD;
             hd.ngayTaoHD = NgayTaoHD;
-            XL_HoaDonBan.luuHoaDonBan(hd);
-            Response.Redirect("./MH_HoaDonBan");
+            if (XL_HoaDonBan.loiThemHD(hd) == "")
+            {
+                XL_HoaDonBan.luuHoaDonBan(hd);
+                Response.Redirect("./MH_HoaDonBan");
+            }
+            else
+            {
+                err = XL_HoaDonBan.loiThemHD(hd);
+            }
         }
     }
 

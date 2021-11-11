@@ -35,6 +35,27 @@ namespace QLCuaHang.Business
             return kq;
         }
 
+        public static string loiThemHD(HoaDonMH hd)
+        {
+            HoaDonMH[] ds = LT_HoaDonNhap.docDSHoaDonNhap();
+            string err = "";
+            for (int i = 0; i < ds.Length; i++)
+            {
+                // kiểm tra mã hóa đơn
+                if (hd.maHD == ds[i].maHD)
+                {
+                    err = "Mã hóa đơn đã tồn tại!";
+                }
+            }
+            // kiểm tra có trường nào bị bỏ trống
+            if (hd.maHD == null)
+            {
+                err = "Vui lòng điền đầy đủ thông tin";
+            }
+
+            return err;
+        }
+
         public static void luuHoaDonNhap(HoaDonMH hd)
         {
             LT_HoaDonNhap.themHoaDonNhap(hd);

@@ -23,20 +23,23 @@ namespace QLCuaHang.Pages
         public DateTime NgaySanXuat { get; set; }
         [BindProperty]
         public DateTime HanSuDung { get; set; }
-        public string error { get; set; }
+        
+        public LoaiHangSP[] dsLH;
+        public string Error { get; set; }
+
         public void OnGet()
         {
             SanPham sp = XL_SanPham.docSanPham(PiD);
-            if(sp.maMH != "")
+            dsLH = XL_LoaiHang.timLoaiHang();
+            if (sp.maMH != "")
             {
                 TenHang = sp.tenMH;
-                LoaiHang = sp.loaiMH;
                 CongTy = sp.congtySX;
                 NgaySanXuat = sp.ngaySX;
                 HanSuDung = sp.hanSD;
             } else
             {
-                error = "Không tìm thấy sản phẩm";
+                Error = "Không tìm thấy sản phẩm";
             }
         }
 
@@ -48,8 +51,17 @@ namespace QLCuaHang.Pages
             sp.congtySX = CongTy;
             sp.ngaySX = NgaySanXuat;
             sp.hanSD = HanSuDung;
-            XL_SanPham.suaSanPham(sp);
-            Response.Redirect("/MH_MatHang");
+            dsLH = XL_LoaiHang.timLoaiHang();
+            if (XL_SanPham.loiSuaSP(sp) == "")
+            {
+                XL_SanPham.suaSanPham(sp);
+                Response.Redirect("/MH_MatHang");
+            }
+            else
+            {
+                Error = XL_SanPham.loiSuaSP(sp);
+            }
+            
         }
     }
 }

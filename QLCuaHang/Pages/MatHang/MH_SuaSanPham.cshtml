@@ -1,5 +1,6 @@
 ﻿@page
 @model QLCuaHang.Pages.MH_SuaSanPhamModel
+@using QLCuaHang.Entity
 @{
 }
 
@@ -8,7 +9,13 @@
     <label for="thh">Tên hàng hóa:</label><br>
     <input type="text" id="thh" name="tenhang" value="@Model.TenHang"><br />
     <label for="lhh">Loại hàng hóa:</label><br>
-    <input type="text" id="lhh" name="loaihang" value="@Model.LoaiHang"><br />
+    <select name="loaihang" id="lhh">
+        <option value="">--- Chọn loại hàng ---</option>
+        @foreach (LoaiHangSP lh in Model.dsLH)
+        {
+            <option value="@lh.tenLH">@lh.tenLH</option>
+        }
+    </select><br />
     <label for="ct">Công ty sản xuất:</label><br>
     <input type="text" id="ct" name="congty" value="@Model.CongTy"><br />
     <label for="nsx">Ngày sản xuất:</label><br>
@@ -18,4 +25,4 @@
 
     <input type="submit" value="Cập nhật" />
 </form>
-<h3 style="color:red">@Model.error</h3>
+<p style="color:red">@Model.Error</p>

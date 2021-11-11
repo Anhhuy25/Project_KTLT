@@ -38,80 +38,55 @@ namespace QLCuaHang.Business
 
             return kq;
         }
-
-        public static SanPham[] timSanPhamTheoID(string keyword = "")
-        {
-            SanPham[] ds = LT_SanPham.docDSSanPham();
-            SanPham[] kq;
-            int n = 0;
-            for (int i = 0; i < ds.Length; i++)
-            {
-                if (ds[i].maMH.Contains(keyword))
-                {
-                    n++;
-                }
-            }
-            kq = new SanPham[n];
-            int j = 0;
-            for (int i = 0; i < ds.Length; i++)
-            {
-                if (ds[i].maMH.Contains(keyword))
-                {
-                    kq[j] = ds[i];
-                    j++;
-                }
-            }
-
-            return kq;
-        }
-
-        public static SanPham[] timSanPhamTheoTen(string name = "")
-        {
-            SanPham[] ds = LT_SanPham.docDSSanPham();
-            SanPham[] kq;
-            int n = 0;
-            for (int i = 0; i < ds.Length; i++)
-            {
-                if (ds[i].maMH.Contains(name))
-                {
-                    n++;
-                }
-            }
-            kq = new SanPham[n];
-            int j = 0;
-            for (int i = 0; i < ds.Length; i++)
-            {
-                if (ds[i].maMH.Contains(name))
-                {
-                    kq[j] = ds[i];
-                    j++;
-                }
-            }
-
-            return kq;
-        }
-
+          
         public static void luuSanPham(SanPham sp)
         {
             LT_SanPham.themSanPham(sp);
         }
 
-        public static string error(SanPham sp)
+        public static string loiThemSP(SanPham sp)
         {
             SanPham[] ds = LT_SanPham.docDSSanPham();
             string err = "";
             for (int i = 0; i < ds.Length; i++)
             {
+                // kiểm tra mã sản phẩm
                 if (sp.maMH == ds[i].maMH)
                 {
-                   err = "Mã mặt hàng bị trùng!";
+                   err = "Mã mặt hàng đã tồn tại!";
                 }
             }
+            // kiểm tra có trường nào bị bỏ trống
             if (sp.maMH == null || sp.loaiMH == null || sp.tenMH == null || sp.congtySX == null)
             {
                 err = "Vui lòng điền đầy đủ thông tin"; 
             }
-            //if (sp.ngaySX.Day )
+            // kiểm tra ngày sx có trước hạn sd không
+            int compare = DateTime.Compare(sp.ngaySX, sp.hanSD);
+            if(compare > 0)
+            {
+                err = "Vui lòng kiểm tra lại ngày SX và hạn SD";
+            }
+
+            return err;
+        }
+
+        public static string loiSuaSP(SanPham sp)
+        {
+            SanPham[] ds = LT_SanPham.docDSSanPham();
+            string err = "";
+            // kiểm tra có trường nào bị bỏ trống
+            if (sp.maMH == null || sp.loaiMH == null || sp.tenMH == null || sp.congtySX == null)
+            {
+                err = "Vui lòng điền đầy đủ thông tin";
+            }
+            // kiểm tra ngày sx có trước hạn sd không
+            int compare = DateTime.Compare(sp.ngaySX, sp.hanSD);
+            if (compare > 0)
+            {
+                err = "Vui lòng kiểm tra lại ngày SX và hạn SD";
+            }
+
             return err;
         }
 

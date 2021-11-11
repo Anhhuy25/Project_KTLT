@@ -35,6 +35,27 @@ namespace QLCuaHang.Business
             return kq;
         }
 
+        public static string loiThemLH(LoaiHangSP lh)
+        {
+            LoaiHangSP[] ds = LT_LoaiHang.docDSLoaiHang();
+            string err = "";
+            for (int i = 0; i < ds.Length; i++)
+            {
+                // kiểm tra mã loại hàng
+                if (lh.maLH == ds[i].maLH)
+                {
+                    err = "Mã loại hàng đã tồn tại!";
+                }
+            }
+            // kiểm tra có trường nào bị bỏ trống
+            if (lh.maLH == null || lh.tenLH == null)
+            {
+                err = "Vui lòng điền đầy đủ thông tin";
+            }
+
+            return err;
+        }
+
         public static void luuLoaiHang(LoaiHangSP lh)
         {
             LT_LoaiHang.themLoaiHang(lh);
@@ -48,12 +69,12 @@ namespace QLCuaHang.Business
             {
                 if (lh.maLH == ds[i].maLH)
                 {
-                    err = "Mã mặt hàng bị trùng!";
+                    err = "Ma mat hang bi trung!";
                 }
             }
             if (lh.maLH == null || lh.tenLH == null)
             {
-                err = "Vui lòng điền đầy đủ thông tin";
+                err = "Vui long dien day du thong tin";
             }
             
             return err;

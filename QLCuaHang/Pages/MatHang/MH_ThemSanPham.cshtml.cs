@@ -42,17 +42,15 @@ namespace QLCuaHang.Pages
             spMoi.congtySX = CongTy;
             spMoi.ngaySX = NgaySanXuat;
             spMoi.hanSD = HanSuDung;
-            XL_SanPham.luuSanPham(spMoi);
-            Response.Redirect("/MH_MatHang");
-            /*if (XL_SanPham.error(spMoi) == "")
+            if (XL_SanPham.loiThemSP(spMoi) == "")
             {
                 XL_SanPham.luuSanPham(spMoi);
                 Response.Redirect("/MH_MatHang");
             }
             else
             {
-                Error = XL_SanPham.error(spMoi);
-            }*/
+                Error = XL_SanPham.loiThemSP(spMoi);
+            }
         }
     }
 }

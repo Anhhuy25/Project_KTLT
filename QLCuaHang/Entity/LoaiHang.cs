@@ -9,6 +9,5 @@ namespace QLCuaHang.Entity
     {
         public string maLH;
         public string tenLH;
-        public int soluongLH;
     }
 }
